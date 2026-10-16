@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulting Detective — Case Player</title>
+  <meta name="description" content="Play any Sherlock Holmes Consulting Detective-style case. Drop in a case file and start investigating.">
+
+  <!-- Paste analytics snippets (Clarity, Google tag) here if you want them. -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Homemade+Apple&family=IM+Fell+English:ital@0;1&family=Special+Elite&display=swap">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Optional helpers. The site still works without them (no zips / no raw HTML blocks / plain-text guide). -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js" defer></script>
+</head>
+<body>
+  <div id="notifications" aria-live="polite"></div>
+
+  <!-- ============ LANDING: drop a case ============ -->
+  <main id="landing" class="landing" hidden>
+    <div class="case-title-box">
+      <h2>Consulting Detective</h2>
+      <p class="landing-sub">A case player for <em>Sherlock Holmes Consulting Detective</em>-style mysteries</p>
+    </div>
+
+    <div class="landing-grid">
+      <section class="story-area landing-main">
+        <div id="resume-box" class="resume-box" hidden></div>
+
+        <div id="drop-zone" class="drop-zone" tabindex="0" role="button" aria-label="Choose or drop a case file">
+          <div class="drop-icon">🔍</div>
+          <div class="drop-title">Drop a case file here</div>
+          <div class="drop-hint">a <strong>.json</strong> case, or a <strong>.zip</strong> with case.json and its pictures &amp; audio · or click to browse</div>
+          <input type="file" id="case-file" accept=".json,.zip,application/json,application/zip" hidden>
+        </div>
+
+        <div id="load-status" class="load-status" hidden></div>
+
+        <form id="url-form" class="url-form">
+          <label for="case-url">…or open a case from a link</label>
+          <div class="address-entry">
+            <input id="case-url" type="url" placeholder="https://example.com/my-case/case.json">
+            <button class="go-btn" type="submit">Open</button>
+          </div>
+        </form>
+      </section>
+
+      <aside class="tool-box landing-side">
+        <h3 class="tool-title">New here?</h3>
+        <button id="demo-btn">▶ Play the demo case</button>
+        <p class="side-text">A short original case that shows off every feature: letters, evidence, ciphers, hidden addresses, choices and scoring.</p>
+        <hr>
+        <h3 class="tool-title small">Writing a case?</h3>
+        <button id="guide-btn">📜 Case Author's Guide</button>
+        <a class="button-link" href="cases/template.json" download>⬇ Blank case template</a>
+        <a class="button-link" href="cases/demo/case.json" download="demo-case.json">⬇ Demo case file</a>
+        <p class="side-text">Tip: add <code>?debug</code> to the page address while testing your case for author tools and a list of mistakes in the file.</p>
+      </aside>
+    </div>
+    <p class="footer-note">Unofficial fan tool. <em>Sherlock Holmes Consulting Detective</em> © SPACE Cowboys. Engine by Edward Pritchard (CodeLifter).</p>
+  </main>
+
+  <!-- ============ AUTHOR'S GUIDE ============ -->
+  <main id="guide-view" class="guide-view" hidden>
+    <div class="guide-bar">
+      <button id="guide-back" class="go-btn">← Back</button>
+      <nav id="guide-toc" class="guide-toc" aria-label="Guide contents"></nav>
+    </div>
+    <article id="guide-body" class="story-area guide-body"></article>
+  </main>
+
+  <!-- ============ GAME ============ -->
+  <main id="game" hidden>
+    <div class="case-title-box">
+      <h2 id="case-title">Loading…</h2>
+      <div id="case-subtitle" class="case-subtitle"></div>
+    </div>
+    <div class="game-container">
+      <div class="story-area">
+        <div id="current-text" class="current-text"></div>
+      </div>
+      <div class="map-area">
+        <button id="hamburger-button" class="hamburger-button" aria-label="Toggle tools menu" aria-expanded="false">&#9776;</button>
+        <div class="tool-box" id="tool-box"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/util.js"></script>
+  <script src="js/logic.js"></script>
+  <script src="js/loader.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/solve.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

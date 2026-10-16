@@ -1,0 +1,70 @@
+{
+  "id": "my-case",
+  "meta": {
+    "title": "My Case Title",
+    "author": "Your Name",
+    "date": "London, 1st January 1890"
+  },
+
+  "settings": {
+    "addressEntry": "both",
+    "dropdownShows": "all"
+  },
+
+  "letters": ["A", "B"],
+
+  "items": {
+    "clue1": { "name": "A mysterious clue", "description": "Describe it here." }
+  },
+
+  "resources": [
+    { "label": "Map", "icon": "🗺️", "type": "image", "src": "media/map.png" },
+    { "label": "Newspaper", "icon": "📰", "type": "page", "content": [
+      { "type": "document", "style": "newspaper", "masthead": "The Times", "title": "Headline", "text": "Story text…" }
+    ]}
+  ],
+
+  "intro": [
+    "Write the opening of your case here. A blank line\n\nstarts a new paragraph.",
+    { "type": "quote", "text": "Something Holmes says.", "speaker": "Sherlock Holmes" }
+  ],
+
+  "locations": {
+    "1 WC": "The simplest location is just one string of text.",
+
+    "2 WC": [
+      "A location can be a list of blocks.",
+      { "type": "effects", "effects": [ { "letter": "A" } ] }
+    ],
+
+    "3 WC": {
+      "name": "Somewhere important",
+      "content": [
+        "What everyone sees.",
+        { "type": "text", "if": "letter:A", "text": "Only shown once letter A is circled.", "effects": [ { "addItem": "clue1" } ],
+          "else": [ { "type": "prompt", "text": "You need letter A to learn more here." } ] }
+      ]
+    }
+  },
+
+  "questions": [
+    { "text": "An open question the player answers in their own words.", "points": 20, "answerText": "The answer." },
+    { "text": "A multiple-choice question.", "points": 20, "options": [
+      { "text": "Right answer", "correct": true },
+      { "text": "Wrong answer" }
+    ]}
+  ],
+
+  "scoring": {
+    "rules": [ { "label": "Found the clue", "points": 10, "if": { "item": "clue1" } } ],
+    "leads": { "par": 3, "penaltyPerLead": 5 },
+    "ratings": [ { "min": 40, "label": "Excellent!" }, { "min": 0, "label": "Keep trying." } ]
+  },
+
+  "solution": {
+    "content": [ "Explain what really happened." ],
+    "holmes": { "text": "Holmes solved it in 3 leads.", "leads": ["3 WC", "2 WC", "1 WC"], "score": 50 }
+  },
+
+  "credits": [ "Case written by **Your Name**." ]
+}

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600" font-family="Georgia, serif">
+  <rect width="900" height="600" fill="#efe3c8"/>
+  <rect x="10" y="10" width="880" height="580" fill="none" stroke="#6b5235" stroke-width="3"/>
+  <rect x="18" y="18" width="864" height="564" fill="none" stroke="#6b5235" stroke-width="1"/>
+
+  <!-- district shading -->
+  <g stroke="#6b5235" stroke-width="2" stroke-dasharray="8 6" fill-opacity="0.35">
+    <path d="M30 30 H330 V300 H30 Z" fill="#c9b48a"/>
+    <path d="M330 30 H600 V300 H330 Z" fill="#d8c69c"/>
+    <path d="M600 30 H870 V330 H600 Z" fill="#c7b585"/>
+    <path d="M30 300 H330 V570 H30 Z" fill="#d2be92"/>
+    <path d="M330 300 H600 V360 H330 Z" fill="#cbb98e"/>
+    <path d="M330 420 H870 V570 H330 Z" fill="#bfae83"/>
+  </g>
+
+  <!-- the Thames -->
+  <path d="M30 390 C 170 350, 260 430, 380 395 S 560 350, 640 390 S 800 440, 870 400 L 870 440 C 800 480, 700 430, 640 430 S 480 395, 380 435 S 170 395, 30 430 Z" fill="#9fb7c4" stroke="#5f7d8c" stroke-width="2"/>
+  <text x="470" y="418" font-size="22" font-style="italic" fill="#3e5a68" text-anchor="middle" letter-spacing="8">RIVER THAMES</text>
+
+  <!-- district labels -->
+  <g font-size="56" fill="#6b5235" fill-opacity="0.55" text-anchor="middle" font-weight="bold">
+    <text x="180" y="190">NW</text>
+    <text x="465" y="190">WC</text>
+    <text x="735" y="140">EC</text>
+    <text x="180" y="490">SW</text>
+    <text x="735" y="290" font-size="44">E</text>
+    <text x="600" y="520">SE</text>
+  </g>
+
+  <!-- landmarks -->
+  <g font-size="15" fill="#2a160c">
+    <circle cx="420" cy="250" r="5"/><text x="430" y="255">Scotland Yard · 1 WC</text>
+    <circle cx="660" cy="80" r="5"/><text x="670" y="85">London &amp; County Bank · 3 EC</text>
+    <circle cx="640" cy="160" r="5"/><text x="650" y="165">12 EC · Thorne</text>
+    <circle cx="700" cy="210" r="5"/><text x="710" y="215">26 EC</text>
+    <circle cx="780" cy="110" r="5"/><text x="790" y="118">47 EC</text>
+    <circle cx="820" cy="320" r="5"/><text x="770" y="345">58 E</text>
+    <circle cx="660" cy="470" r="5"/><text x="670" y="475">Cooper's Wharf</text>
+    <circle cx="120" cy="90" r="5"/><text x="130" y="95">9 NW</text>
+  </g>
+
+  <!-- compass -->
+  <g transform="translate(90 520)" fill="#6b5235">
+    <polygon points="0,-34 7,0 0,34 -7,0"/>
+    <text y="-40" text-anchor="middle" font-size="16">N</text>
+  </g>
+  <text x="860" y="575" font-size="13" fill="#6b5235" text-anchor="end" font-style="italic">Not to scale. Demonstration map.</text>
+</svg>

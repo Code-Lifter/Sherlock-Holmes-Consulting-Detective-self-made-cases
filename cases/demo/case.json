@@ -1,0 +1,339 @@
+{
+  "id": "clockmakers-silence",
+  "meta": {
+    "title": "The Clockmaker's Silence",
+    "subtitle": "A demonstration case",
+    "author": "Edward Pritchard",
+    "date": "London, Thursday 14th March 1889"
+  },
+
+  "theme": {
+    "accent": "#5e734f",
+    "accentHover": "#405f2b"
+  },
+
+  "settings": {
+    "addressEntry": "both",
+    "dropdownShows": "all",
+    "showLocationNames": false,
+    "unknownAddressText": "You knock, you ask, you look about — but nobody here knows anything of clocks, ledgers or missing apprentices.",
+    "startHint": "Choose an address from the **Investigation Tools**, or type one in. The **Map** and **Directory** will help you find your way."
+  },
+
+  "letters": ["A", "B", "C"],
+
+  "items": {
+    "watch": {
+      "name": "Engraved pocket watch",
+      "image": "media/watch.svg",
+      "description": "A silver hunter-case watch, stopped at twenty past nine. The case is engraved **M.R.** — it is not Elias Thorne's."
+    },
+    "cipher": {
+      "name": "Scrap of paper",
+      "icon": "📜",
+      "description": "Found under the workbench at Thorne's shop. Written in Tom Hale's hand:",
+      "examineLabel": "Read it again",
+      "content": [
+        { "type": "document", "style": "note", "text": "PHHW PH DW WKH UDYHQ" }
+      ]
+    },
+    "ledger": {
+      "name": "Thorne's service ledger",
+      "icon": "📕",
+      "description": "Every clock Elias Thorne has regulated this year — including the vault time-lock at the London & County Bank.",
+      "content": [
+        { "type": "document", "style": "ledger", "title": "March", "text": "4th — St. Bride's turret clock. Cleaned & oiled.\n9th — Mrs Abernathy, carriage clock, new mainspring.\n12th — **London & County Bank, 3 EC.** Vault time-lock regulated. Next release: **Saturday 16th, nine o'clock in the evening**, for the bullion transfer." }
+      ]
+    }
+  },
+
+  "resources": [
+    { "id": "map", "label": "Map", "icon": "🗺️", "type": "image", "src": "media/map.svg", "caption": "London, divided into postal districts" },
+    {
+      "id": "times", "label": "The Times", "icon": "📰", "type": "page", "title": "The Times",
+      "content": [
+        {
+          "type": "document", "style": "newspaper", "masthead": "The Times", "date": "Thursday, March 14, 1889 · Price Threepence",
+          "title": "Bullion On The Move",
+          "text": "The London & County Bank of Lombard Street is understood to be preparing a considerable transfer of gold bullion to its Paris correspondents this weekend. The bank declined to name the hour.\n\nSHOPKEEPERS of the City are warned of a gang of housebreakers active in the district these past weeks. Inspector Lestrade of Scotland Yard declares the matter well in hand.\n\nTO LET — Warehouse space at Cooper's Wharf, Southwark. Apply within."
+        }
+      ]
+    },
+    {
+      "id": "directory", "label": "Directory", "icon": "📖", "type": "page", "title": "London Directory", "wide": true,
+      "content": [
+        { "type": "table", "headers": ["Name", "Address"], "rows": [
+          ["Scotland Yard (Inspector Lestrade)", "1 WC"],
+          ["London & County Bank", "3 EC"],
+          ["Thorne, Elias — Clockmaker", "12 EC"],
+          ["The Times (offices)", "26 EC"],
+          ["Worshipful Company of Clockmakers", "47 EC"],
+          ["Reed, Marcus — Pawnbroker", "58 E"],
+          ["Thorne, Mrs Ada (residence)", "9 NW"],
+          ["Cooper's Wharf (warehouses)", "21 SE"]
+        ]},
+        { "type": "note", "text": "Not every place in London is in the directory." }
+      ]
+    },
+    {
+      "id": "statement", "label": "Tom's Statement", "icon": "✒️", "type": "page", "if": { "flag": "foundTom" },
+      "content": [
+        { "type": "document", "style": "official", "masthead": "Statement of Thomas Hale, apprentice", "text": "I saw two men take the ledger from Mr Thorne's bench on Tuesday night. One had a scar from his eye to his chin. The other was Mr Reed the pawnbroker. They saw me. I ran." , "signature": "— T. Hale" }
+      ]
+    }
+  ],
+
+  "intro": [
+    "The fog has not lifted from Baker Street all morning when a telegram arrives.",
+    {
+      "type": "document", "style": "telegram", "masthead": "Post Office Telegraphs",
+      "to": "To: Mr Sherlock Holmes, 221B Baker Street",
+      "text": "SHOP BROKEN INTO TUESDAY NIGHT STOP NOTHING OF VALUE TAKEN STOP MY APPRENTICE TOM HALE MISSING SINCE STOP POLICE UNINTERESTED STOP PLEASE COME",
+      "signature": "THORNE, 12 EC"
+    },
+    "Holmes reads it twice and tosses it to you across the breakfast things.",
+    { "type": "quote", "text": "A burglar who breaks into a clockmaker's and takes no clocks. An apprentice who vanishes the same night. I am occupied with the Abernathy affair — you will go in my place. Find out **what was taken**, **why**, and **when the thieves mean to use it**.", "speaker": "Sherlock Holmes" }
+  ],
+
+  "scenes": {
+    "reed-bluff": [
+      "You lean across the counter and mention, quite casually, that Inspector Lestrade is a personal friend.",
+      { "type": "quote", "text": "All right, all right! I only bought what they brought me. The boy — Hale — he's hiding at the old Cooper's warehouse, down at **21 SE**. Scarface wants him found before Saturday. That's all I know!", "speaker": "Marcus Reed" },
+      { "type": "effects", "effects": [ { "setFlag": "reedTalked" }, { "reveal": "21 SE" } ] }
+    ]
+  },
+
+  "locations": {
+    "1 WC": {
+      "name": "Scotland Yard",
+      "content": [
+        "Inspector Lestrade receives you with the air of a man interrupted at lunch.",
+        { "type": "quote", "text": "Thorne? Nothing stolen, no crime. As for his apprentice — boys run off every day of the week. Here, if it'll make you go away:", "speaker": "Inspector Lestrade" },
+        { "type": "table", "caption": "Reported break-ins, City of London, March", "headers": ["Date", "Premises", "Taken"], "rows": [
+          ["2nd", "Grocer, 14 EC", "Till money"],
+          ["7th", "Jeweller, 19 EC", "Nothing — disturbed"],
+          ["12th", "Clockmaker, 12 EC", "Nothing reported"]
+        ]},
+        { "type": "text", "if": "item:watch", "text": "You show him the watch engraved *M.R.* He shrugs. “Could be anyone's. Ask the Clockmakers' Company — they keep a register of engravers' marks.”" }
+      ]
+    },
+
+    "3 EC": {
+      "name": "London & County Bank",
+      "content": [
+        "The manager, a narrow man in a narrow coat, will discuss nothing with strangers — until you mention Elias Thorne.",
+        { "type": "quote", "text": "Thorne regulates the time-lock on our vault. Once it is set, not even I can open the door until the hour arrives. A marvellous mechanism. As to *when* it next opens — that, sir, is precisely the sort of thing we do not tell people.", "speaker": "The bank manager" },
+        { "type": "text", "if": { "item": "ledger" }, "text": "When you show him the ledger, he goes very pale indeed, and sends a clerk running for the police.", "effects": [ { "setFlag": "warnedBank" } ] }
+      ]
+    },
+
+    "12 EC": {
+      "name": "Thorne's Clock Shop",
+      "effects": [ { "letter": "A" } ],
+      "content": [
+        "Ten thousand ticks greet you as you step inside. Elias Thorne is a stooped man with magnifying spectacles pushed up onto his forehead.",
+        { "type": "quote", "text": "They turned the place over, but not one clock is missing. Only my service ledger — and who would want that? And Tom… Tom has never missed a day.", "speaker": "Elias Thorne" },
+        "On the workbench lies a silver pocket watch. Thorne swears it isn't his.",
+        { "type": "image", "src": "media/watch.svg", "caption": "A silver watch, engraved *M.R.*", "size": "small" },
+        { "type": "text", "text": "You pocket the watch.", "effects": [ { "addItem": "watch" } ] },
+        { "type": "heading", "text": "Under the bench" },
+        "Wedged between the floorboards is a scrap of paper in Tom's handwriting. Thorne says the boy was forever reading about Julius Caesar.",
+        { "type": "document", "style": "note", "text": "PHHW PH DW WKH UDYHQ", "effects": [ { "addItem": "cipher", "silent": true } ] },
+        {
+          "type": "puzzle", "id": "caesar",
+          "prompt": "What does the note say?",
+          "answers": ["meet me at the raven", "at the raven", "the raven"],
+          "hint": "Caesar is said to have shifted every letter of his messages **three places** along the alphabet. Shift each letter three places *back*: P→M, H→E…",
+          "wrongText": "That doesn't read as English yet.",
+          "onSolve": {
+            "effects": [ { "setFlag": "decodedNote" }, { "reveal": "33 EC" } ],
+            "content": [ "**MEET ME AT THE RAVEN.** Thorne knows it — a public house round the corner, at **33 EC**. It isn't in the directory." ]
+          }
+        }
+      ]
+    },
+
+    "26 EC": {
+      "name": "The Times",
+      "content": [
+        "A harassed sub-editor confirms the bullion story came from a clerk at the bank. “They'd never print the hour, of course. Half of London would turn up.”"
+      ]
+    },
+
+    "33 EC": {
+      "name": "The Raven",
+      "hidden": true,
+      "content": [
+        "A low, smoky public house. The regulars fall silent as you enter.",
+        {
+          "type": "group",
+          "if": { "flag": "decodedNote" },
+          "blocks": [
+            "You mention Tom Hale's name to the barmaid, and the note he left. Her face softens.",
+            { "type": "quote", "text": "Tom? He was in Tuesday, white as a sheet, waiting on someone who never came. A man with a scar from his eye to his chin was asking after him later — him and **Reed the pawnbroker**. Thick as thieves, those two.", "speaker": "The barmaid" },
+            { "type": "effects", "effects": [ { "letter": "B" } ] }
+          ],
+          "else": [
+            { "type": "prompt", "text": "Nobody here will talk to a stranger who doesn't know why they've come. Perhaps there's something you've missed." }
+          ]
+        }
+      ]
+    },
+
+    "47 EC": {
+      "name": "Worshipful Company of Clockmakers",
+      "content": [
+        "A dusty register of engravers' marks fills an entire wall.",
+        { "type": "text", "if": "item:watch", "text": "The clerk turns the pages for you. The mark on your watch belongs to a watch once pawned and never redeemed at the shop of **Marcus Reed, pawnbroker, 58 E** — Reed has been using it himself.", "else": [ { "type": "prompt", "text": "Without something to look up, the register is just a wall of names." } ] }
+      ]
+    },
+
+    "58 E": {
+      "name": "Reed's Pawnshop",
+      "content": [
+        "Behind a counter of tarnished candlesticks and stopped clocks stands a man with very quick eyes.",
+        {
+          "type": "group",
+          "if": { "any": [ { "letter": "B" }, { "item": "watch" } ] },
+          "blocks": [
+            "At the mention of Tom Hale, his quick eyes stop moving.",
+            {
+              "type": "actions",
+              "prompt": "How will you make him talk? (You only get one chance.)",
+              "pickOne": true,
+              "record": "reedApproach",
+              "actions": [
+                { "id": "bluff", "label": "Hint that Lestrade is a close friend", "then": "reed-bluff" },
+                { "id": "bribe", "label": "Slide a half-crown across the counter",
+                  "effects": [ { "setFlag": "reedTalked" }, { "reveal": "21 SE" }, { "counter": "coinsSpent", "add": 1 } ],
+                  "then": [ "Reed pockets the coin without looking at it. “Hale? Try Cooper's Wharf. **21 SE**.” He doesn't meet your eye — and you suspect he'll tell Scarface you've been asking." ] },
+                { "id": "threaten", "label": "Grab his collar and demand answers", "style": "danger",
+                  "then": [ "Reed shouts for help. A very large man appears from the back room and you find yourself in the gutter outside. That was a mistake." ],
+                  "effects": [ { "lock": "here" } ] }
+              ]
+            }
+          ],
+          "else": [
+            { "type": "prompt", "text": "Reed sells you nothing and tells you less. You have no reason to press him — yet." }
+          ]
+        }
+      ]
+    },
+
+    "21 SE": {
+      "name": "Cooper's Wharf",
+      "hidden": true,
+      "content": [
+        "Rows of empty warehouses lean over the black water of the Thames.",
+        {
+          "type": "group",
+          "if": "reedTalked",
+          "blocks": [
+            "In the third warehouse, behind a stack of rotting barrels, you find a frightened boy of fifteen. It's Tom Hale.",
+            { "type": "quote", "text": "They took the ledger — the scarred man and Mr Reed. I saw them. I've been too scared to go home.", "speaker": "Tom Hale" },
+            { "type": "effects", "effects": [ { "setFlag": "foundTom" }, { "letter": "C" }, { "notify": "Tom's statement added to your tools.", "kind": "info" } ] },
+            "Tom says the gang uses the last warehouse on the wharf. There may still be time to search it — but if their lookout sees you, you won't get a second chance.",
+            {
+              "type": "actions",
+              "actions": [
+                {
+                  "label": "Search the gang's warehouse",
+                  "confirm": "Once you search, the gang's lookout will spot you and you can't come back here. Go ahead?",
+                  "effects": [ { "lock": "here" }, { "addItem": "ledger" } ],
+                  "then": [
+                    "You slip through a broken shutter. On a crate, beside a half-eaten pie, lies Thorne's ledger — open at a page that has been circled in pencil.",
+                    { "type": "evidence", "item": "ledger" },
+                    { "type": "reveal", "label": "Read the circled entry", "content": [ { "type": "document", "style": "ledger", "text": "12th — **London & County Bank, 3 EC.** Vault time-lock regulated. Next release: **Saturday 16th, nine o'clock in the evening**, for the bullion transfer." } ] },
+                    "A whistle shrieks outside. You run."
+                  ]
+                },
+                { "label": "Leave for now", "once": false, "then": [ "You decide to come back later." ] }
+              ]
+            }
+          ],
+          "else": [
+            { "type": "prompt", "text": "There are dozens of warehouses. Without knowing which one, you could search for a week." }
+          ]
+        }
+      ]
+    },
+
+    "9 NW": {
+      "name": "Mrs Thorne's house",
+      "content": [
+        "Ada Thorne hands you a letter delivered by a street boy on Wednesday morning.",
+        { "type": "document", "style": "letter", "date": "Tuesday night", "to": "Dear Mrs Thorne,", "text": "Please tell Mr Thorne I am safe and I am sorry. I saw what they took and I know what it is for. I will come back when it is safe.", "signature": "Your obedient servant, T. Hale" },
+        { "type": "note", "text": "The letter has no address. Whatever Tom saw, he thought it was worth hiding over." }
+      ]
+    },
+
+    "85 SW": {
+      "countsAsLead": false,
+      "content": [ { "type": "prompt", "text": "Ready? Choose **Solve the Case** in your tools to answer the questions." } ]
+    }
+  },
+
+  "questions": [
+    {
+      "id": "stolen", "points": 30, "type": "open",
+      "text": "What was taken from Thorne's shop, and why did the thieves want it?",
+      "answerText": "Thorne's service ledger — it recorded when the London & County Bank's vault time-lock would next open.",
+      "accept": ["ledger"]
+    },
+    {
+      "id": "when", "points": 30, "type": "choice",
+      "text": "When will the gang strike?",
+      "options": [
+        { "id": "fri", "text": "Friday at midnight" },
+        { "id": "sat9", "text": "Saturday at nine in the evening", "correct": true },
+        { "id": "sun", "text": "Sunday morning, during church" },
+        { "id": "sat6", "text": "Saturday at six o'clock" }
+      ],
+      "explanation": "The circled ledger entry gives the next release of the vault's time-lock."
+    },
+    {
+      "id": "reed", "points": 20, "type": "choice",
+      "text": "What is Marcus Reed's part in the plot?",
+      "options": [
+        { "text": "None — he simply bought a stolen watch" },
+        { "text": "He took the ledger with the scarred man, and fences for the gang", "correct": true },
+        { "text": "He is Tom Hale's uncle, sheltering him" }
+      ]
+    }
+  ],
+
+  "scoring": {
+    "rules": [
+      { "label": "Found Tom Hale", "points": 10, "if": { "flag": "foundTom" }, "missedLabel": "Never found Tom Hale" },
+      { "label": "Recovered the ledger", "points": 10, "if": { "item": "ledger" }, "missedLabel": "Didn't recover the ledger" },
+      { "label": "Got Reed talking without paying him", "points": 10, "if": { "flag": "reedApproach", "equals": "bluff" }, "missedLabel": "Didn't bluff Reed" },
+      { "label": "Roughed up Reed (and got thrown out)", "points": -10, "if": { "flag": "reedApproach", "equals": "threaten" } }
+    ],
+    "leads": { "par": 6, "penaltyPerLead": 5 },
+    "ratings": [
+      { "min": 110, "label": "You outwitted the master himself!" },
+      { "min": 80, "label": "Excellent — Holmes is impressed." },
+      { "min": 50, "label": "Good work." },
+      { "min": 20, "label": "Not bad, for a beginner." },
+      { "min": -999, "label": "Back to Baker Street with you." }
+    ]
+  },
+
+  "solution": {
+    "content": [
+      "Holmes listens to your report with his fingertips pressed together.",
+      { "type": "quote", "text": "A clockmaker's ledger is a timetable of other people's secrets. The gang never wanted Thorne's clocks — they wanted to know the one hour when the London & County's vault would open itself: **nine o'clock on Saturday evening**, during the bullion transfer. Reed fenced for them and lent his watch to the job; it fell from his pocket in the dark. Young Hale saw everything, left a note for Thorne in the only cipher he knew, and ran. Lestrade will be waiting at the bank on Saturday. Well done.", "speaker": "Sherlock Holmes" }
+    ],
+    "holmes": {
+      "text": "Holmes would have solved this case in 6 leads:",
+      "leads": ["Thorne's shop (12 EC)", "The Raven (33 EC)", "Reed's pawnshop (58 E)", "Cooper's Wharf (21 SE)", "London & County Bank (3 EC)", "Clockmakers' Company (47 EC)"],
+      "score": 110
+    }
+  },
+
+  "credits": [
+    { "type": "heading", "text": "The Clockmaker's Silence" },
+    "An original demonstration case written by **Edward Pritchard** to show what the case engine can do.",
+    "Swap this file for your own case — see the *Case Author's Guide* on the home page."
+  ]
+}
